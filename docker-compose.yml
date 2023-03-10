@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  api:
+    container_name: api
+    command: python -u app.py
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 12005:5000
+      - 5679:5679 
+    volumes:
+      - ./api:/app
+      - /etc/localtime:/etc/localtime
+    entrypoint: [ "python", "-m", "debugpy", "--listen", "0.0.0.0:5679", "-m", "app",  "--wait-for-client", "--multiprocess", "-m", "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
