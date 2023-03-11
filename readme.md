@@ -3,6 +3,7 @@
 
 Debugging Flask applications inside Docker containers can be challenging, but with the right tools and configurations, it can become much easier. This repo demonstrates how to debug a Flask application running inside a Docker container using VS Code and `debugpy`.
 
+![vscode](./vscode.gif)
 ## Prerequisites
 
 -   Docker
